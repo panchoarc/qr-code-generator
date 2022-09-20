@@ -18,6 +18,11 @@ function App() {
     );
   };
 
+  const handleResetField = () => {
+    setUrl('');
+    setQrCode('');
+  };
+
   return (
     <div className='app'>
       <h2>QR code Generator</h2>
@@ -29,7 +34,19 @@ function App() {
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
-      <button onClick={generateQrCode}>Generate</button>
+
+      <div className='centered-buttons'>
+        <button className='btn btn-generate' onClick={generateQrCode}>
+          Generate
+        </button>
+
+        {url && (
+          <button className='btn btn-reset' onClick={handleResetField}>
+            Reset
+          </button>
+        )}
+      </div>
+
       {qrcode && (
         <>
           <img src={qrcode} alt='' />
